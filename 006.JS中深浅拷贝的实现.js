@@ -101,3 +101,59 @@ var deepCopy = function (obj) {
 
     return new_obj;
 }
+
+/**
+ * 深拷贝的实现（广度优先遍历）
+ * 来源：https://www.cnblogs.com/rusr/p/8984604.html
+ */
+function deepClone (data) {
+    var obj = {};
+    var originQueue = [data];
+    var copyQueue = [obj];
+
+    // 以下两个队列用来保存复制过程中访问过的对象，以此来避免对象换的问题（对象的属性值是对象本身）
+    var visitedQueue = [];
+    var copyVisitedQueue = [];
+
+    while (originQueue.length > 0) {
+        var _data = originQueue.shift();
+        var _obj = copyQueue.shift();
+
+        visitedQueue.push(_data);
+        copyVisitedQueue.push(_obj);
+
+        for (var key in _data) {
+            var _value = _data[key];
+            if (typeof _value !== 'object') {
+                _obj[key] = _value;
+            } else {
+                // 使用 indexOf 可以发现数组中是否存在相同的对象（实现indexOf的难点在于对象比较
+                var index = visitedQueue.indexOf(_value);
+                if (index >= 0) {
+                    // 出现环的情况不需要再取出遍历
+                    _obj[key] = copyVisitedQueue[index];
+                } else {
+                    originQueue.push(_value);
+                    _obj[key] = {}; // 使用_obj[key]来进行对象属性的遍历
+                    copyQueue.push(_obj[key]);
+                }
+            }
+        }
+    }
+
+    return obj;
+}
+
+// 测试
+var obj = {
+    'a': 123,
+    'b': {
+        'm': 22,
+        'n': {
+            'x': 1,
+            'y': 2
+        }
+    }
+}
+
+console.log(deepClone(obj));
