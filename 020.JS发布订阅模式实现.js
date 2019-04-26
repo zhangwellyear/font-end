@@ -40,6 +40,8 @@ Public.prototype = {
 
     // 删除订阅事件
     off: function (eventType, handler) {
+        if (!(eventType in handler)) return;
+
         var currHandler = this.handlers[eventType];
         var len = currHandler.length;
         if (currHandler) {
@@ -47,6 +49,9 @@ Public.prototype = {
                 if (currHandler[i] === handler) {
                     currHandler.splice(i, 1);   // 将currHandler中所有的handler订阅事件全部删除
                 }
+                // 或者使用下面的方式
+                // var idx = currHandler.indexOf(handler);
+                // currHandler.splice(idx, 1);
             }
         }
 
@@ -68,3 +73,6 @@ Publisher.on('a', function (data) {
 // 触发事件
 Publisher.emit('a', '我是第1次调用的参数');
 Publisher.emit('a', '我是第2次调用的参数');
+
+// 其他实现
+// https://github.com/addyosmani/pubsubz/blob/master/pubsubz.js
