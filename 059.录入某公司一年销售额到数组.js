@@ -1,4 +1,5 @@
 /**
+ * 题目来源: https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/96
  * 题目描述：
  * 有这么一个对象: {1: 555, 2: 333, 5: 888}，表示一个公司的销售额
  * 将上面的对象抓换为: [555, 333, null, null, 888, null, null, null, null, null, null, null]
