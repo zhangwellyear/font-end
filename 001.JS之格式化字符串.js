@@ -26,7 +26,7 @@ function add_douhao(num) {
     }
 }
 
-console.log(add_douhao(1234567.0001));
+// console.log(add_douhao(1234567.0001));
 
 /**
  * 直接转换的方式
@@ -35,7 +35,25 @@ function trans_us(num) {
     return num.toLocaleString('en-US')
 }
 
-console.log(trans_us(12343.11));    // 12,343.11
+/**
+ * 使用正则的方式将数字转换为','格式
+ * @param {待转换的数字} num 
+ */
+function re_trans(num) {
+    let res = ''
 
-// 当数组长度过长时，无法进行转化
-console.log(trans_us(1234567894133431341.111)); // 1,234,567,894,133,430,000
+    let num_str = num.toString()
+    let num_str_split = num_str.split('.')
+
+    let int_part = num_str_split[0]
+    int_part = int_part.split('').reverse().join('')
+    int_part = int_part.replace(/(?<=(^(\d{3})+))(?<!$)/g,",")
+    int_part = int_part.split('').reverse().join('')
+
+    if (num_str_split.length > 1) res = int_part + '.' + num_str_split[1]
+    else res += int_part
+
+    return res
+}
+
+console.log(re_trans(12344577889.4536546))
