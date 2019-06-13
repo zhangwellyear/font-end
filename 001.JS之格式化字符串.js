@@ -47,6 +47,7 @@ function re_trans(num) {
 
     let int_part = num_str_split[0]
     int_part = int_part.split('').reverse().join('')
+    // ?<= 这个api 是匹配后面位置的 就是说 匹配到所在字符的后面位置
     int_part = int_part.replace(/(?<=(^(\d{3})+))(?<!$)/g,",")
     int_part = int_part.split('').reverse().join('')
 
