@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .parent {
+            width: 200px;
+            overflow: hidden;
+            height: 100px;
+            background-color: green;
+        }
+
+        .child {
+            width: 30%;
+            height: 30%;
+            padding-top: 20%;
+            margin-top: 10%;
+            background-color: yellow;
+        }
+
+        ul li {
+            display: inline-block;
+            width: 200px;
+            height: 50px;
+            background-color: pink;
+        }
+
+        .parent-div {
+            width: 500px;
+            height: 300px;
+            background-color: skyblue;
+            position: relative;
+        }
+
+        .child1 {
+            height: 100px;
+            background-color: cyan;
+        }
+
+        .child2 {
+            position: absolute;
+            width: 100%;
+            top: 100px;
+            bottom: 0;
+            left: 0;
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+    <!-- 父元素及子元素高度/宽度设置问题 -->
+    <div class="parent">
+        <div class="child">
+            aaaaaa
+        </div>
+    </div>
+
+    <!-- li布局排列 -->
+    <ul>
+        <li></li><li></li><li></li>
+    </ul>
+
+    <!-- 子元素中高度自适应 -->
+    <div class="parent-div">
+        <div class="child1"></div>
+        <div class="child2"></div>
+    </div>
+</body>
+</html>
